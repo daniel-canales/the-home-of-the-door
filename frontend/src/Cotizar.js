@@ -20,7 +20,7 @@ function Cotizar() {
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    fetch('http://localhost:5000/api/cotizaciones', {
+    fetch('https://the-home-of-the-door-production.up.railway.app/api/cotizaciones', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formulario)

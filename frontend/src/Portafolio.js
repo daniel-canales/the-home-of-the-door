@@ -13,7 +13,7 @@ function Portafolio() {
   const [imagenActiva, setImagenActiva] = useState(0);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/proyectos')
+    fetch('https://the-home-of-the-door-production.up.railway.app/api/proyectos')
       .then(res => res.json())
       .then(data => setProyectos(data));
   }, []);
