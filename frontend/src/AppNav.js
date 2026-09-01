@@ -15,7 +15,7 @@ function AppNav() {
     if (paginaActual === 'servicios') return <Servicios />;
     if (paginaActual === 'cotizar') return <Cotizar />;
     if (paginaActual === 'contacto') return <Contacto />;
-    return <Inicio />;
+    return <Inicio setPagina={setPaginaActual} />;
   };
 
   return (

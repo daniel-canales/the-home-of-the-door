@@ -7,6 +7,11 @@ router.get('/', async (req, res) => {
   res.json(cotizaciones)
 })
 
+router.get('/cliente/:correo', async (req, res) => {
+  const cotizaciones = await Cotizacion.find({ correo: req.params.correo })
+  res.json(cotizaciones)
+})
+
 router.get('/:id', async (req, res) => {
   const cotizacion = await Cotizacion.findById(req.params.id)
   res.json(cotizacion)

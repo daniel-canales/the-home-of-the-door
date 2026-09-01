@@ -7,8 +7,8 @@ function NavBar({ setPagina }) {
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
         <Navbar.Brand onClick={() => setPagina('inicio')} style={{ cursor: 'pointer' }}>
-  THE HOME OF THE DOOR
-</Navbar.Brand>
+          THE HOME OF THE DOOR
+        </Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link onClick={() => setPagina('inicio')}>Inicio</Nav.Link>
           <Nav.Link onClick={() => setPagina('portafolio')}>Portafolio</Nav.Link>
