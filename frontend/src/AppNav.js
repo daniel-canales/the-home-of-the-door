@@ -12,7 +12,7 @@ function AppNav() {
   const renderPagina = () => {
     if (paginaActual === 'inicio') return <Inicio setPagina={setPaginaActual} />;
     if (paginaActual === 'portafolio') return <Portafolio />;
-    if (paginaActual === 'servicios') return <Servicios />;
+    if (paginaActual === 'servicios') return <Servicios setPagina={setPaginaActual} />;
     if (paginaActual === 'cotizar') return <Cotizar />;
     if (paginaActual === 'contacto') return <Contacto />;
     return <Inicio setPagina={setPaginaActual} />;

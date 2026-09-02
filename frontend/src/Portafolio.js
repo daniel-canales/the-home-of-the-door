@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Badge from 'react-bootstrap/Badge';
 import Modal from 'react-bootstrap/Modal';
 
 // Paleta de marca (misma que Inicio.js)
@@ -56,6 +55,24 @@ function Portafolio() {
   const imagenAnterior = (imagenes) => {
     setImagenActiva(prev => (prev - 1 + imagenes.length) % imagenes.length);
   };
+
+  const CategoriaTag = ({ categoria, variante = 'clara' }) => (
+    <span
+      style={{
+        display: 'inline-block',
+        background: variante === 'clara' ? '#F7F1E8' : COLOR_ACCENT,
+        color: variante === 'clara' ? COLOR_ACCENT : '#fff',
+        fontWeight: '700',
+        fontSize: '0.72rem',
+        padding: '5px 10px',
+        borderRadius: '4px',
+        textTransform: 'uppercase',
+        letterSpacing: '0.4px'
+      }}
+    >
+      {categoria}
+    </span>
+  );
 
   return (
     <Container className="mt-4" style={{ marginBottom: '60px' }}>
@@ -150,20 +167,9 @@ function Portafolio() {
                   </div>
                 )}
                 <Card.Body>
-                  <Badge
-                    className="mb-2"
-                    style={{
-                      background: '#F7F1E8',
-                      color: COLOR_ACCENT,
-                      fontWeight: '700',
-                      fontSize: '0.72rem',
-                      padding: '5px 10px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.4px'
-                    }}
-                  >
-                    {proyecto.categoria}
-                  </Badge>
+                  <div className="mb-2">
+                    <CategoriaTag categoria={proyecto.categoria} variante="clara" />
+                  </div>
                   <Card.Title style={{ fontWeight: '700', color: COLOR_DARK, fontSize: '1.1rem' }}>
                     {proyecto.nombre}
                   </Card.Title>
@@ -192,7 +198,7 @@ function Portafolio() {
       {proyectoSeleccionado && (() => {
         const imagenes = obtenerImagenes(proyectoSeleccionado);
         return (
-          <Modal show={true} onHide={cerrarModal} size="lg" centered contentClassName="border-0" style={{ }}>
+          <Modal show={true} onHide={cerrarModal} size="lg" centered contentClassName="border-0">
             <div style={{ background: '#1a1310', borderRadius: '10px', overflow: 'hidden' }}>
               <div style={{
                 display: 'flex',
@@ -282,19 +288,7 @@ function Portafolio() {
                 <p style={{ color: '#e8e0d8' }}>
                   <strong style={{ color: '#fff' }}>Material:</strong> {proyectoSeleccionado.material}
                 </p>
-                <Badge
-                  style={{
-                    background: COLOR_ACCENT,
-                    color: '#fff',
-                    fontWeight: '700',
-                    fontSize: '0.72rem',
-                    padding: '5px 10px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.4px'
-                  }}
-                >
-                  {proyectoSeleccionado.categoria}
-                </Badge>
+                <CategoriaTag categoria={proyectoSeleccionado.categoria} variante="oscura" />
               </div>
             </div>
           </Modal>
