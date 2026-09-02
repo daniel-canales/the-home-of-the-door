@@ -77,7 +77,29 @@ function Portafolio() {
   return (
     <Container className="mt-4" style={{ marginBottom: '60px' }}>
       <h2 className="mb-2" style={{ fontWeight: '800', color: COLOR_DARK }}>Portafolio de Trabajos</h2>
-      <p style={{ color: '#6b6b6b', marginBottom: '28px' }}>Proyectos realizados por el taller, organizados por categoría.</p>
+      <p style={{ color: '#6b6b6b', marginBottom: '16px' }}>Proyectos realizados por el taller, organizados por categoría.</p>
+
+      {/* BANNER DESTACADO DE AVISO DE CARGA */}
+      <div 
+        style={{
+          backgroundColor: '#FFF8E7',
+          borderLeft: `5px solid ${COLOR_ACCENT}`,
+          color: COLOR_DARK,
+          padding: '12px 18px',
+          borderRadius: '8px',
+          marginBottom: '28px',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px'
+        }}
+      >
+        <span style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center' }}>⚠️</span>
+        <div style={{ fontSize: '0.92rem', lineHeight: '1.4' }}>
+          <strong style={{ color: COLOR_ACCENT, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Aviso:</strong>{' '}
+          La carga inicial de los proyectos puede demorar unos segundos mientras conectamos con el servidor. ¡Agradecemos su paciencia!
+        </div>
+      </div>
 
       <div className="mb-4" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
         {categorias.map(cat => {
@@ -202,7 +224,7 @@ function Portafolio() {
             <div style={{ background: '#1a1310', borderRadius: '10px', overflow: 'hidden' }}>
               <div style={{
                 display: 'flex',
-                justifyContent: 'space-between',
+                justifySpace: 'space-between',
                 alignItems: 'center',
                 padding: '18px 22px',
                 borderBottom: '1px solid rgba(255,255,255,0.1)'
