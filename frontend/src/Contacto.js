@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+// Paleta de marca (misma que el resto del sitio)
 const COLOR_DARK = '#3E2723';
 const COLOR_ACCENT = '#C08552';
 const COLOR_BG_WARM = '#F7F1E8';
@@ -64,9 +65,23 @@ function Contacto() {
 
       <Row>
         <Col md={6} className="mb-4">
-          <div style={{ background: '#fff', borderRadius: '14px', boxShadow: '0 6px 22px rgba(0,0,0,0.08)', padding: '32px', height: '100%' }}>
-
-            <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: COLOR_BG_WARM, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: '14px',
+            boxShadow: '0 6px 22px rgba(0,0,0,0.08)',
+            padding: '32px',
+            height: '100%'
+          }}>
+            <div style={{
+              width: '52px',
+              height: '52px',
+              borderRadius: '50%',
+              background: COLOR_BG_WARM,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '18px'
+            }}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={COLOR_ACCENT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
               </svg>
@@ -78,9 +93,7 @@ function Contacto() {
 
             {datos.map((d, i) => (
               <div key={i} style={{ display: 'flex', gap: '12px', marginBottom: '18px', alignItems: 'flex-start' }}>
-                <div style={{ marginTop: '2px', flexShrink: 0 }}>
-                  {d.icono}
-                </div>
+                <div style={{ marginTop: '2px', flexShrink: 0 }}>{d.icono}</div>
                 <div>
                   <p style={{ fontWeight: '700', color: COLOR_DARK, marginBottom: '2px', fontSize: '0.9rem' }}>
                     {d.etiqueta}
@@ -92,11 +105,25 @@ function Contacto() {
               </div>
             ))}
 
-            
+            <a
               href={urlWhatsApp}
               target="_blank"
               rel="noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: COLOR_WHATSAPP, color: '#fff', fontWeight: '700', fontSize: '0.98rem', padding: '12px 26px', borderRadius: '8px', textDecoration: 'none', boxShadow: '0 6px 16px rgba(63,164,106,0.3)', marginTop: '6px', transition: 'transform 0.15s' }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                background: COLOR_WHATSAPP,
+                color: '#fff',
+                fontWeight: '700',
+                fontSize: '0.98rem',
+                padding: '12px 26px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                boxShadow: '0 6px 16px rgba(63,164,106,0.3)',
+                marginTop: '6px',
+                transition: 'transform 0.15s'
+              }}
               onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
               onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
             >
@@ -105,14 +132,29 @@ function Contacto() {
               </svg>
               Escribir por WhatsApp
             </a>
-
           </div>
         </Col>
 
         <Col md={6} className="mb-4">
-          <div style={{ background: '#fff', borderRadius: '14px', boxShadow: '0 6px 22px rgba(0,0,0,0.08)', padding: '32px', height: '100%', display: 'flex', flexDirection: 'column' }}>
-
-            <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: COLOR_BG_WARM, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: '14px',
+            boxShadow: '0 6px 22px rgba(0,0,0,0.08)',
+            padding: '32px',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            <div style={{
+              width: '52px',
+              height: '52px',
+              borderRadius: '50%',
+              background: COLOR_BG_WARM,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '18px'
+            }}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={COLOR_ACCENT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z" />
                 <circle cx="12" cy="10" r="2.5" />
@@ -134,7 +176,6 @@ function Contacto() {
                 title="Ubicación del taller"
               ></iframe>
             </div>
-
           </div>
         </Col>
       </Row>
