@@ -3,12 +3,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 function NavBar({ setPagina }) {
+  const haySesion = !!localStorage.getItem('adminToken');
+
   return (
     <>
       <style>
         {`
           .navbar-ebanisteria {
-            background-color: #1a1614 !important; /* Marrón muy oscuro (café espresso) */
+            background-color: #1a1614 !important;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             padding: 12px 0;
             transition: all 0.3s ease;
@@ -28,7 +30,6 @@ function NavBar({ setPagina }) {
             position: relative;
             transition: color 0.3s ease;
           }
-          /* Efecto de línea animada debajo al hacer hover */
           .nav-link-custom::after {
             content: '';
             position: absolute;
@@ -37,7 +38,7 @@ function NavBar({ setPagina }) {
             display: block;
             margin-top: 4px;
             right: 0;
-            background: #c78a57; /* Tono madera/caramelo igual al de tus botones */
+            background: #c78a57;
             transition: width 0.3s ease;
             -webkit-transition: width 0.3s ease;
           }
@@ -49,7 +50,6 @@ function NavBar({ setPagina }) {
             left: 0;
             background: #c78a57;
           }
-          /* Botón de CTA resaltado para Cotizar */
           .btn-cotizar-nav {
             background-color: #c78a57;
             color: #ffffff !important;
@@ -65,8 +65,18 @@ function NavBar({ setPagina }) {
             color: #c78a57 !important;
             border: 1px solid #c78a57;
           }
-          
-          /* Ajustes para la vista móvil (Hamburguesa) */
+          .nav-link-admin {
+            color: #8a8378 !important;
+            font-size: 0.82rem;
+            margin: 0 0 0 18px;
+            font-weight: 500;
+            opacity: 0.8;
+          }
+          .nav-link-admin:hover {
+            color: #c78a57 !important;
+            opacity: 1;
+          }
+
           @media (max-width: 991px) {
             .nav-link-custom {
               margin: 10px 0;
@@ -78,7 +88,10 @@ function NavBar({ setPagina }) {
               display: block;
             }
             .nav-link-custom::after {
-              display: none; /* Quitamos la línea en móvil para un diseño más limpio */
+              display: none;
+            }
+            .nav-link-admin {
+              margin: 10px 0 0 0;
             }
           }
         `}
@@ -86,8 +99,8 @@ function NavBar({ setPagina }) {
 
       <Navbar className="navbar-ebanisteria" data-bs-theme="dark" expand="lg" sticky="top">
         <Container>
-          <Navbar.Brand 
-            onClick={() => setPagina('inicio')} 
+          <Navbar.Brand
+            onClick={() => setPagina('inicio')}
             style={{ cursor: 'pointer' }}
             className="navbar-brand-custom"
           >
@@ -100,8 +113,13 @@ function NavBar({ setPagina }) {
               <Nav.Link className="nav-link-custom" onClick={() => setPagina('portafolio')}>Portafolio</Nav.Link>
               <Nav.Link className="nav-link-custom" onClick={() => setPagina('servicios')}>Servicios</Nav.Link>
               <Nav.Link className="nav-link-custom" onClick={() => setPagina('contacto')}>Contacto</Nav.Link>
-              {/* Separamos el botón de Cotizar para darle mayor énfasis */}
               <Nav.Link className="btn-cotizar-nav" onClick={() => setPagina('cotizar')}>Cotizar Proyecto</Nav.Link>
+              <Nav.Link
+                className="nav-link-admin"
+                onClick={() => setPagina(haySesion ? 'panelAdmin' : 'login')}
+              >
+                {haySesion ? 'Panel Admin' : 'Admin'}
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

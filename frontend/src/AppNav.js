@@ -6,6 +6,8 @@ import Portafolio from './Portafolio';
 import Servicios from './Servicios';
 import Cotizar from './Cotizar';
 import Contacto from './Contacto';
+import Login from './Login';
+import PanelAdmin from './PanelAdmin';
 
 // Inicializar Google Analytics con tu ID de medición
 ReactGA.initialize('G-VM42MYVHMG');
@@ -18,18 +20,28 @@ function AppNav() {
     ReactGA.send({ hitType: "pageview", page: `/${paginaActual}`, title: paginaActual });
   }, [paginaActual]);
 
+  const cambiarPagina = (pagina) => {
+    if (pagina === 'panelAdmin' && !localStorage.getItem('adminToken')) {
+      setPaginaActual('login');
+      return;
+    }
+    setPaginaActual(pagina);
+  };
+
   const renderPagina = () => {
-    if (paginaActual === 'inicio') return <Inicio setPagina={setPaginaActual} />;
+    if (paginaActual === 'inicio') return <Inicio setPagina={cambiarPagina} />;
     if (paginaActual === 'portafolio') return <Portafolio />;
-    if (paginaActual === 'servicios') return <Servicios setPagina={setPaginaActual} />;
+    if (paginaActual === 'servicios') return <Servicios setPagina={cambiarPagina} />;
     if (paginaActual === 'cotizar') return <Cotizar />;
     if (paginaActual === 'contacto') return <Contacto />;
-    return <Inicio setPagina={setPaginaActual} />;
+    if (paginaActual === 'login') return <Login setPagina={cambiarPagina} />;
+    if (paginaActual === 'panelAdmin') return <PanelAdmin setPagina={cambiarPagina} />;
+    return <Inicio setPagina={cambiarPagina} />;
   };
 
   return (
     <div>
-      <NavBar setPagina={setPaginaActual} />
+      <NavBar setPagina={cambiarPagina} />
       {renderPagina()}
     </div>
   );

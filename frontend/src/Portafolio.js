@@ -43,6 +43,14 @@ function Portafolio() {
     return [];
   };
 
+  // Si la imagen ya es una URL completa (ej. Cloudinary), se usa tal cual.
+  // Si es solo un nombre de archivo (fotos antiguas), se busca en /img/.
+  const resolverImagen = (img) => {
+    if (!img) return '';
+    if (img.startsWith('http://') || img.startsWith('https://')) return img;
+    return `/img/${img}`;
+  };
+
   const truncar = (texto, max = 110) => {
     if (!texto) return '';
     return texto.length > max ? texto.slice(0, max).trim() + '...' : texto;
@@ -80,7 +88,7 @@ function Portafolio() {
       <p style={{ color: '#6b6b6b', marginBottom: '16px' }}>Proyectos realizados por el taller, organizados por categoría.</p>
 
       {/* BANNER DESTACADO DE AVISO DE CARGA */}
-      <div 
+      <div
         style={{
           backgroundColor: '#FFF8E7',
           borderLeft: `5px solid ${COLOR_ACCENT}`,
@@ -160,7 +168,7 @@ function Portafolio() {
                     <Card.Img
                       className="card-img-zoom"
                       variant="top"
-                      src={`/img/${imagenes[0]}`}
+                      src={resolverImagen(imagenes[0])}
                       style={{ height: '200px', objectFit: 'cover', transition: 'transform 0.35s ease', borderRadius: 0 }}
                     />
                     {imagenes.length > 1 && (
@@ -224,7 +232,7 @@ function Portafolio() {
             <div style={{ background: '#1a1310', borderRadius: '10px', overflow: 'hidden' }}>
               <div style={{
                 display: 'flex',
-                justifySpace: 'space-between',
+                justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: '18px 22px',
                 borderBottom: '1px solid rgba(255,255,255,0.1)'
@@ -251,7 +259,7 @@ function Portafolio() {
               <div style={{ position: 'relative', background: '#0f0b09' }}>
                 {imagenes.length > 0 && (
                   <img
-                    src={`/img/${imagenes[imagenActiva]}`}
+                    src={resolverImagen(imagenes[imagenActiva])}
                     alt={proyectoSeleccionado.nombre}
                     style={{ width: '100%', maxHeight: '480px', objectFit: 'contain', display: 'block', margin: '0 auto' }}
                   />
@@ -287,7 +295,7 @@ function Portafolio() {
                   {imagenes.map((img, i) => (
                     <img
                       key={i}
-                      src={`/img/${img}`}
+                      src={resolverImagen(img)}
                       alt={`Vista ${i + 1}`}
                       onClick={() => setImagenActiva(i)}
                       style={{

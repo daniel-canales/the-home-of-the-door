@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Proyecto = require('../models/Proyecto')
+const verificarToken = require('../middleware/auth')
 
 router.get('/', async (req, res) => {
   const proyectos = await Proyecto.find()
@@ -12,13 +13,13 @@ router.get('/:id', async (req, res) => {
   res.json(proyecto)
 })
 
-router.post('/', async (req, res) => {
+router.post('/', verificarToken, async (req, res) => {
   const nuevo = new Proyecto(req.body)
   await nuevo.save()
   res.json(nuevo)
 })
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', verificarToken, async (req, res) => {
   const actualizado = await Proyecto.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -27,7 +28,7 @@ router.put('/:id', async (req, res) => {
   res.json(actualizado)
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verificarToken, async (req, res) => {
   await Proyecto.findByIdAndDelete(req.params.id)
   res.json({ mensaje: 'Proyecto eliminado' })
 })
